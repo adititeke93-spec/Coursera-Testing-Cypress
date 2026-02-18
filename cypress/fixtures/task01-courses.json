@@ -1,0 +1,8 @@
+{
+  "searchQuery": "web development courses",
+  "filters": {
+    "language": "English",
+    "difficulty": "Beginner"
+  },
+  "coursesToExtract": 2
+}

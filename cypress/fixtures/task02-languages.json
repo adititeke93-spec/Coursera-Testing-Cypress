@@ -1,0 +1,16 @@
+{
+  "searchQuery": "Language Learning",
+  "levels": [
+    "Beginner",
+    "Intermediate",
+    "Advanced",
+    "Mixed"
+  ],
+  "filterSelectors": {
+    "searchInput": "[data-testid='search-autocomplete-input']",
+    "difficultyFilter": "[data-testid='filter-dropdown-productDifficultyLevel']",
+    "languageFilter": "[data-testid='filter-dropdown-language']",
+    "checkboxInput": ".cds-checkboxAndRadio-label input[type='checkbox']",
+    "viewButton": "[data-testid='filter-view-button']"
+  }
+}
