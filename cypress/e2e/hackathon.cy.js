@@ -28,4 +28,5 @@ describe('Coursera-Identify courses', () => {
       Task03Page.submitAndCaptureError();
     });
   });
+  //cy.get('.error-message').should('be.visible').and('contain', 'Please enter a valid email address');
 });
