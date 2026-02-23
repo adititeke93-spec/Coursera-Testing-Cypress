@@ -1,0 +1,152 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 1,
+    "pending": 0,
+    "failures": 2,
+    "start": "2026-02-23T05:47:38.583Z",
+    "end": "2026-02-23T05:48:55.829Z",
+    "duration": 77246,
+    "testsRegistered": 3,
+    "passPercent": 33.33333333333333,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "c1d668a1-951f-4f8d-a388-05b3c3cc5da9",
+      "title": "",
+      "fullFile": "cypress\\e2e\\coursera.cy.js",
+      "file": "cypress\\e2e\\coursera.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "3755bdbc-a298-4f98-be30-ce13b7c8d94b",
+          "title": "Coursera Project ",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Task-01: Search and display 2 web development courses",
+              "fullTitle": "Coursera Project  Task-01: Search and display 2 web development courses",
+              "timedOut": null,
+              "duration": 4951,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture('courses').then(data => {\n  _homePage.default.searchCourse(data.searchTerm);\n  _searchPage.default.filterLanguage(data.filters.language);\n  _searchPage.default.filterDifficulty(data.filters.difficulty);\n  _searchPage.default.getFirstTwoCourses();\n});",
+              "err": {
+                "message": "TypeError: _searchPage.default.filterLanguage is not a function",
+                "estack": "TypeError: _searchPage.default.filterLanguage is not a function\n    at Context.eval (webpack://hackathon/./cypress/e2e/coursera.cy.js:18:17)\n    at getRet (https://www.coursera.org/__cypress/runner/cypress_runner.js:122807:20)\n    at tryCatcher (https://www.coursera.org/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise.attempt.Promise.try (https://www.coursera.org/__cypress/runner/cypress_runner.js:4285:29)\n    at Context.thenFn (https://www.coursera.org/__cypress/runner/cypress_runner.js:122818:66)\n    at Context.then (https://www.coursera.org/__cypress/runner/cypress_runner.js:123069:21)\n    at wrapped (https://www.coursera.org/__cypress/runner/cypress_runner.js:146327:19)\n    at <unknown> (https://www.coursera.org/__cypress/runner/cypress_runner.js:152295:15)\n    at tryCatcher (https://www.coursera.org/__cypress/runner/cypress_runner.js:1777:23)",
+                "diff": null
+              },
+              "uuid": "7ed94dc7-179f-4507-9a8e-0ee9805a005f",
+              "parentUUID": "3755bdbc-a298-4f98-be30-ce13b7c8d94b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Task-02: Extract the languages for different levels with count",
+              "fullTitle": "Coursera Project  Task-02: Extract the languages for different levels with count",
+              "timedOut": null,
+              "duration": 2997,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture('levels').then(data => {\n  let result = {};\n  _homePage.default.searchCourse(data.searchTerm);\n  // Loop through levels by visible text\n  data.levels.forEach(level => {\n    result[level] = [];\n    _searchPage.default.openDifficultyFilter();\n    _searchPage.default.selectDifficulty(level); //  pass text like \"Beginner\"\n    _searchPage.default.openLanguageFilter();\n    _searchPage.default.extractLanguagesForLevel(level, result);\n  });\n  cy.then(() => {\n    Object.keys(result).forEach(level => {\n      cy.log(`=== ${level} ===`);\n      result[level].forEach(({\n        language,\n        count\n      }) => {\n        cy.log(`${language}: ${count}`);\n      });\n    });\n  });\n});",
+              "err": {
+                "message": "TypeError: _searchPage.default.openDifficultyFilter is not a function",
+                "estack": "TypeError: _searchPage.default.openDifficultyFilter is not a function\n    at eval (webpack://hackathon/./cypress/e2e/coursera.cy.js:32:19)\n    at Array.forEach (<anonymous>)\n    at Context.eval (webpack://hackathon/./cypress/e2e/coursera.cy.js:30:18)\n    at getRet (https://www.coursera.org/__cypress/runner/cypress_runner.js:122807:20)\n    at tryCatcher (https://www.coursera.org/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise.attempt.Promise.try (https://www.coursera.org/__cypress/runner/cypress_runner.js:4285:29)\n    at Context.thenFn (https://www.coursera.org/__cypress/runner/cypress_runner.js:122818:66)\n    at Context.then (https://www.coursera.org/__cypress/runner/cypress_runner.js:123069:21)\n    at wrapped (https://www.coursera.org/__cypress/runner/cypress_runner.js:146327:19)",
+                "diff": null
+              },
+              "uuid": "2402c11c-9393-4b62-a407-4a85a2b49abd",
+              "parentUUID": "3755bdbc-a298-4f98-be30-ce13b7c8d94b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Task-03: Enterprise > Campus form with multiple datasets",
+              "fullTitle": "Coursera Project  Task-03: Enterprise > Campus form with multiple datasets",
+              "timedOut": null,
+              "duration": 65936,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture('enterprise').then(datasets => {\n  datasets.forEach(form => {\n    cy.on('uncaught:exception', () => false);\n    _enterprisePage.default.openForm();\n    _enterprisePage.default.fillForm(form);\n    if (form.expectedError) {\n      cy.get('#ValidMsgEmail', {\n        timeout: 10000\n      }).should('be.visible').then($msg => {\n        cy.log(`Error for ${form.email}: ${$msg.text()}`);\n        cy.screenshot(`invalid-email-${form.email}`);\n        // expect($msg.text()).to.contain('Invalid')\n      });\n    } else {\n      cy.get('#ValidMsgEmail').should('not.exist');\n      cy.log(`Form submitted successfully for ${form.email}`);\n      cy.screenshot(`valid-email-${form.email}`);\n    }\n  });\n});",
+              "err": {},
+              "uuid": "1e884c6a-8d59-4279-84d0-a3fb5656ea77",
+              "parentUUID": "3755bdbc-a298-4f98-be30-ce13b7c8d94b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "1e884c6a-8d59-4279-84d0-a3fb5656ea77"
+          ],
+          "failures": [
+            "7ed94dc7-179f-4507-9a8e-0ee9805a005f",
+            "2402c11c-9393-4b62-a407-4a85a2b49abd"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 73884,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}
